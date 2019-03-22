@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Threading.Tasks;
+using waCanalIlhas.DTO.Request.Upload;
+using waCanalIlhas.DTO.Upload;
 
 namespace waCanalIlhas.Interface.DAL
 {
-    interface IUploadDAL
+    public interface IUploadDAL
     {
         //IEnumerable<Tarefa> ObterUploads();
         //Task<Tarefa> ObterUpload(long id);
-        //Task<Tarefa> InserirUpload(Tarefa tarefa);
+        Task<UploadDTO> SalvarUpload(UploadSavarRequest pUploadSavarRequest);
         //Task<Tarefa> AlterarUpload(Tarefa tarefa);
         //Task<bool> DeletarUpload(long id);
     }

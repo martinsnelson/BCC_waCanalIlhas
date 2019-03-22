@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using waCanalIlhas.Interface.Service;
+using waCanalIlhas.Service;
 
 namespace waCanalIlhas
 {
@@ -25,6 +27,9 @@ namespace waCanalIlhas
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            //  Serviços
+            services.AddScoped<IUploadService, UploadService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

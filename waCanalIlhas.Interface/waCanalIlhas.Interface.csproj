@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\waCanalIlhas.DTO\waCanalIlhas.DTO.csproj" />
+  </ItemGroup>
+
 </Project>

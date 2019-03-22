@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using waCanalIlhas.DTO.Request.Upload;
+using waCanalIlhas.DTO.Response.Upload;
+using waCanalIlhas.Interface.Service;
 
 namespace waCanalIlhas.Controllers
 {
@@ -11,6 +9,17 @@ namespace waCanalIlhas.Controllers
     [ApiController]
     public class UploadController : ControllerBase
     {
+        private readonly IUploadService _uploadService;
 
+        public UploadController(IUploadService uploadService)
+        {
+            _uploadService = uploadService;
+        }
+
+        [HttpPost]
+        public UploadSavarResponse SalvarUpload([FromBody] UploadSavarRequest pUploadSavarRequest)
+        {
+            return _uploadService.SalvarUpload(pUploadSavarRequest);
+        }
     }
 }
