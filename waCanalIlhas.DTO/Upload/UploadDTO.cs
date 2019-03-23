@@ -25,18 +25,18 @@ namespace waCanalIlhas.DTO.Upload
         public DateTime DataUpload { get; set; }
 
         [DataMember]
-        public DateTime DataExclusao { get; set; }
+        public DateTime? DataExclusao { get; set; }
 
         [DataMember]
         public bool Ativo { get; set; }
 
         [DataMember]
-        public long Tempo { get; set; }
+        public long? Duracao { get; set; }
 
         [DataMember]
-        public int MatriculaUpload { get; set; }
+        public int? MatriculaUpload { get; set; }
 
         [DataMember]
-        public int MatriculaExclusao { get; set; }
+        public int? MatriculaExclusao { get; set; }
     }
 }
