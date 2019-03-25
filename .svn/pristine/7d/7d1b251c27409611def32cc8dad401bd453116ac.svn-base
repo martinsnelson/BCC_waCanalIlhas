@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <location path="." inheritInChildApplications="false">
+    <system.webServer>
+      <handlers>
+        <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModule" resourceType="Unspecified" />
+      </handlers>
+      <aspNetCore processPath="dotnet" arguments=".\waCanalIlhas.dll" stdoutLogEnabled="false" stdoutLogFile=".\logs\stdout" />
+    </system.webServer>
+  </location>
+</configuration>
+<!--ProjectGuid: 54488b5d-c826-47e3-8964-861b78ea875e-->

@@ -1,0 +1,49 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.1",
+    "signature": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.1": {
+      "waCanalIlhas.Service/1.0.0": {
+        "dependencies": {
+          "waCanalIlhas.Interface": "1.0.0"
+        },
+        "runtime": {
+          "waCanalIlhas.Service.dll": {}
+        }
+      },
+      "waCanalIlhas.DTO/1.0.0": {
+        "runtime": {
+          "waCanalIlhas.DTO.dll": {}
+        }
+      },
+      "waCanalIlhas.Interface/1.0.0": {
+        "dependencies": {
+          "waCanalIlhas.DTO": "1.0.0"
+        },
+        "runtime": {
+          "waCanalIlhas.Interface.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "waCanalIlhas.Service/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "waCanalIlhas.DTO/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "waCanalIlhas.Interface/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
