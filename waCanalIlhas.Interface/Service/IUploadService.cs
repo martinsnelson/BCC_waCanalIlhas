@@ -7,6 +7,7 @@ namespace waCanalIlhas.Interface.Service
     {
         ObterUploadsResponse ObterUploads();
         ObterUploadResponse ObterUpload(ObterUploadRequest pObterUploadRequest);
+        DeletarUploadResponse DeletarArquivo(DeletarUploadRequest pDeletarUploadRequest);
         SavarUploadResponse SalvarUpload(SavarUploadRequest pUploadSavarRequest);
     }
 }

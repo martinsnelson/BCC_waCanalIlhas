@@ -51,9 +51,9 @@ namespace waCanalIlhas.DAL
         {
             using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
             {
-                var sSql = "DELETE FROM TB_CILHAS_UPLOAD WHERE ID_CILHAS = :ID_CILHAS";
+                var sSql = "DELETE FROM TB_CILHAS_UPLOAD WHERE NOME = :NOME";
                 DynamicParameters dyParam = new DynamicParameters();
-                dyParam.Add("ID_CILHAS", pDeletarUploadRequest.Upload.Id, DbType.String, ParameterDirection.Input);
+                dyParam.Add("NOME", pDeletarUploadRequest.Upload.Nome, DbType.String, ParameterDirection.Input);
                 var sSqlRetorno = conexao.QueryFirstOrDefault<DeletarUploadResponse>(sSql, dyParam);
 
                 return sSqlRetorno;

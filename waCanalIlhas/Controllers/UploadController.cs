@@ -29,6 +29,12 @@ namespace waCanalIlhas.Controllers
         }
 
         [HttpPost]
+        public DeletarUploadResponse DeletarArquivo(DeletarUploadRequest pDeletarUploadRequest)
+        {
+            return _uploadService.DeletarArquivo(pDeletarUploadRequest);
+        }
+
+        [HttpPost]
         public SavarUploadResponse SalvarUpload([FromBody] SavarUploadRequest pUploadSavarRequest)
         {
             return _uploadService.SalvarUpload(pUploadSavarRequest);
