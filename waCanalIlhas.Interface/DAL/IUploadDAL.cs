@@ -14,6 +14,6 @@ namespace waCanalIlhas.Interface.DAL
         //Task<Tarefa> ObterUpload(long id);
         Int64 SalvarUpload(SavarUploadRequest pUploadSavarRequest);
         //Task<Tarefa> AlterarUpload(Tarefa tarefa);
-        DeletarUploadResponse DeletarUpload(DeletarUploadRequest pDeletarUploadRequest);
+        //DeletarUploadResponse DeletarUpload(DeletarUploadRequest pDeletarUploadRequest);
     }
 }

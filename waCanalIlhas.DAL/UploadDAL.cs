@@ -47,18 +47,18 @@ namespace waCanalIlhas.DAL
             }
         }
 
-        public DeletarUploadResponse DeletarArquivo(DeletarUploadRequest pDeletarUploadRequest)
-        {
-            using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
-            {
-                var sSql = "DELETE FROM TB_CILHAS_UPLOAD WHERE ID_CILHAS = :ID_CILHAS";
-                DynamicParameters dyParam = new DynamicParameters();
-                dyParam.Add("ID_CILHAS", pDeletarUploadRequest.Upload.Id, DbType.String, ParameterDirection.Input);
-                var sSqlRetorno = conexao.QueryFirstOrDefault<DeletarUploadResponse>(sSql, dyParam);
+        //public DeletarUploadResponse DeletarArquivo(DeletarUploadRequest pDeletarUploadRequest)
+        //{
+        //    using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
+        //    {
+        //        var sSql = "DELETE FROM TB_CILHAS_UPLOAD WHERE ID_CILHAS = :ID_CILHAS";
+        //        DynamicParameters dyParam = new DynamicParameters();
+        //        dyParam.Add("ID_CILHAS", pDeletarUploadRequest.Upload.Id, DbType.String, ParameterDirection.Input);
+        //        var sSqlRetorno = conexao.QueryFirstOrDefault<DeletarUploadResponse>(sSql, dyParam);
 
-                return sSqlRetorno;
-            }
-        }
+        //        return sSqlRetorno;
+        //    }
+        //}
 
         public Int64 SalvarUpload(SavarUploadRequest pUploadSavarRequest)
         {
