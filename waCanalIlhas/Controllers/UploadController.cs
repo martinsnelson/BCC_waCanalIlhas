@@ -5,7 +5,7 @@ using waCanalIlhas.Interface.Service;
 
 namespace waCanalIlhas.Controllers
 {
-    [Route("v1/api/[controller]")]
+    [Route("v1/api/[controller]/[action]")]
     [ApiController]
     public class UploadController : ControllerBase
     {
@@ -16,8 +16,20 @@ namespace waCanalIlhas.Controllers
             _uploadService = uploadService;
         }
 
+        [HttpGet]
+        public ObterUploadsResponse ObterUploads()
+        {
+            return _uploadService.ObterUploads();
+        }
+
         [HttpPost]
-        public UploadSavarResponse SalvarUpload([FromBody] UploadSavarRequest pUploadSavarRequest)
+        public ObterUploadResponse ObterUpload(ObterUploadRequest pObterUploadRequest)
+        {
+            return _uploadService.ObterUpload(pObterUploadRequest);
+        }
+
+        [HttpPost]
+        public SavarUploadResponse SalvarUpload([FromBody] SavarUploadRequest pUploadSavarRequest)
         {
             return _uploadService.SalvarUpload(pUploadSavarRequest);
         }

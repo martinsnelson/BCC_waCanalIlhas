@@ -5,6 +5,8 @@ namespace waCanalIlhas.Interface.Service
 {
     public interface IUploadService
     {
-        UploadSavarResponse SalvarUpload(UploadSavarRequest pUploadSavarRequest);
+        ObterUploadsResponse ObterUploads();
+        ObterUploadResponse ObterUpload(ObterUploadRequest pObterUploadRequest);
+        SavarUploadResponse SalvarUpload(SavarUploadRequest pUploadSavarRequest);
     }
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace waCanalIlhas.DTO.Response.Upload
+namespace waCanalIlhas.DTO.Request.Upload
 {
     [DataContract]
-    public class ObterUploadResponse : BaseResponse
+    public class ObterUploadRequest : BaseRequest
     {
         [DataMember]
         public string NomeUpload { get; set; }

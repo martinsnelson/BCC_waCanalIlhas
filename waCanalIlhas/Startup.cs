@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using waCanalIlhas.DAL;
+using waCanalIlhas.Interface.DAL;
 using waCanalIlhas.Interface.Service;
 using waCanalIlhas.Service;
 
@@ -30,6 +32,9 @@ namespace waCanalIlhas
 
             //  Serviços
             services.AddScoped<IUploadService, UploadService>();
+
+            // DAL
+            services.AddScoped<IUploadDAL, UploadDAL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

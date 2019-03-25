@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\waCanalIlhas.DAL\waCanalIlhas.DAL.csproj" />
     <ProjectReference Include="..\waCanalIlhas.Interface\waCanalIlhas.Interface.csproj" />
     <ProjectReference Include="..\waCanalIlhas.Service\waCanalIlhas.Service.csproj" />
   </ItemGroup>

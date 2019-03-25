@@ -3,7 +3,7 @@
 namespace waCanalIlhas.DTO.Response.Upload
 {
     [DataContract]
-    public class UploadSavarResponse : BaseResponse
+    public class DeletarUploadResponse : BaseResponse
     {
     }
 }

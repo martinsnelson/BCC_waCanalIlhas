@@ -16,14 +16,40 @@ namespace waCanalIlhas.Service
             _uploadDAL = uploadDAL;
         }
 
-        public UploadSavarResponse SalvarUpload(UploadSavarRequest pUploadSalvarRequest)
+        public ObterUploadsResponse ObterUploads()
+        {
+            try
+            {
+                var lUploads = _uploadDAL.ObterUploads();
+                return new ObterUploadsResponse{ Uploads = lUploads,
+                    Mensagem = string.Format(MensagensService.NUMEROS_DE_REGISTROS, lUploads.Count)};
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
+        public ObterUploadResponse ObterUpload(ObterUploadRequest pObterUploadRequest)
+        {
+            try
+            {
+                return _uploadDAL.ObterUpload(pObterUploadRequest);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
+        public SavarUploadResponse SalvarUpload(SavarUploadRequest pUploadSalvarRequest)
         {
             try
             {
                 var salvarUpload = _uploadDAL.SalvarUpload(pUploadSalvarRequest);
-                return new UploadSavarResponse { Mensagem = MensagensService.SUCESSO };
+                return new SavarUploadResponse { Mensagem = MensagensService.SUCESSO };
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw;
             }

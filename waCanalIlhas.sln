@@ -7,15 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "waCanalIlhas", "waCanalIlha
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "waCanalIlhas.Interface", "waCanalIlhas.Interface\waCanalIlhas.Interface.csproj", "{4756F126-B76D-4F25-A280-B1BB2343505E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "waCanalIlhas.Models", "waCanalIlhas.Models\waCanalIlhas.Models.csproj", "{BE32DC8C-C2EC-458A-961A-E64AD5C439D2}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "waCanalIlhas.DAL", "waCanalIlhas.DAL\waCanalIlhas.DAL.csproj", "{17FE6C98-5A3B-443D-B40A-0D8BEBD0FD12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "waCanalIlhas.ServiceAgent", "waCanalIlhas.ServiceAgent\waCanalIlhas.ServiceAgent.csproj", "{28462758-CB43-4A36-A939-E48E1578F8BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "waCanalIlhas.ServiceAgent", "waCanalIlhas.ServiceAgent\waCanalIlhas.ServiceAgent.csproj", "{28462758-CB43-4A36-A939-E48E1578F8BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "waCanalIlhas.DTO", "waCanalIlhas.DTO\waCanalIlhas.DTO.csproj", "{B612BF5D-F719-48CD-83D4-2F7EA7F1A6F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "waCanalIlhas.DTO", "waCanalIlhas.DTO\waCanalIlhas.DTO.csproj", "{B612BF5D-F719-48CD-83D4-2F7EA7F1A6F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "waCanalIlhas.Service", "waCanalIlhas.Service\waCanalIlhas.Service.csproj", "{F883D244-1444-4027-B3BE-2AF933C89908}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "waCanalIlhas.Service", "waCanalIlhas.Service\waCanalIlhas.Service.csproj", "{F883D244-1444-4027-B3BE-2AF933C89908}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{4756F126-B76D-4F25-A280-B1BB2343505E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4756F126-B76D-4F25-A280-B1BB2343505E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4756F126-B76D-4F25-A280-B1BB2343505E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE32DC8C-C2EC-458A-961A-E64AD5C439D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE32DC8C-C2EC-458A-961A-E64AD5C439D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE32DC8C-C2EC-458A-961A-E64AD5C439D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE32DC8C-C2EC-458A-961A-E64AD5C439D2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{17FE6C98-5A3B-443D-B40A-0D8BEBD0FD12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{17FE6C98-5A3B-443D-B40A-0D8BEBD0FD12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17FE6C98-5A3B-443D-B40A-0D8BEBD0FD12}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -4,7 +4,7 @@ using waCanalIlhas.DTO.Upload;
 namespace waCanalIlhas.DTO.Request.Upload
 {
     [DataContract]
-    public class UploadSavarRequest : BaseRequest
+    public class SavarUploadRequest : BaseRequest
     {
         [DataMember]
         public UploadDTO Upload { get; set; }

@@ -19,7 +19,7 @@ namespace waCanalIlhas.ServiceAgent
 
             Configuration = builder.Build();
 
-            string serverAdress = Configuration["waCalendarUrl"];
+            string serverAdress = Configuration["waCanalIlhasUrl"];
 
             string url = string.Format("{0}{1}", serverAdress, pAction);
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
@@ -42,7 +42,7 @@ namespace waCanalIlhas.ServiceAgent
 
             Configuration = builder.Build();
 
-            string serverAdress = Configuration["waCalendarUrl"];
+            string serverAdress = Configuration["waCanalIlhasUrl"];
 
             string url = string.Format("{0}{1}", serverAdress, pAction);
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);

@@ -22,13 +22,13 @@ namespace waCanalIlhas.DTO.Upload
         public string Caminho { get; set; }
 
         [DataMember]
-        public DateTime DataUpload { get; set; }
+        public string DataUpload { get; set; }
 
         [DataMember]
-        public DateTime? DataExclusao { get; set; }
+        public string DataExclusao { get; set; }
 
         [DataMember]
-        public bool Ativo { get; set; }
+        public char? Ativo { get; set; }
 
         [DataMember]
         public long? Duracao { get; set; }
