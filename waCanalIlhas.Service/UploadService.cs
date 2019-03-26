@@ -21,8 +21,7 @@ namespace waCanalIlhas.Service
             try
             {
                 var lUploads = _uploadDAL.ObterUploads();
-                return new ObterUploadsResponse{ Uploads = lUploads,
-                    Mensagem = string.Format(MensagensService.NUMEROS_DE_REGISTROS, lUploads.Count)};
+                return new ObterUploadsResponse{ Uploads = lUploads };
             }
             catch (Exception e)
             {
@@ -45,7 +44,7 @@ namespace waCanalIlhas.Service
         public DeletarUploadResponse DeletarArquivo(DeletarUploadRequest pDeletarUploadRequest)
         {
              var deletarArquivo = _uploadDAL.DeletarArquivo(pDeletarUploadRequest);
-            return deletarArquivo;
+            return new DeletarUploadResponse { Mensagem = MensagensService.SUCESSO };
         }
 
         public SavarUploadResponse SalvarUpload(SavarUploadRequest pUploadSalvarRequest)

@@ -1,13 +1,33 @@
-﻿using System;
+﻿using Dapper.Contrib.Extensions;
+using System;
 using System.Runtime.Serialization;
 
 namespace waCanalIlhas.DTO.Upload
 {
     [DataContract]
+    [Table("TB_CILHAS_ARQUIVO_UPLOAD")]
     public class UploadDTO
     {
         [DataMember]
-        public long Id { get; set; }
+        [ExplicitKey]
+        public int ID_ARQUIVO_UPLOAD { get; set; }
+
+        [DataMember]
+        public string NM_ARQUIVO_UPLOAD { get; set; }
+
+        [DataMember]
+        public string TP_ARQUIVO_UPLOAD { get; set; }
+
+        [DataMember]
+        public long NU_TAMANHO_ARQUIVO { get; set; }
+
+        [DataMember]
+        public string NM_CAMINHO_ARQUIVO { get; set; }
+
+        /*
+        [DataMember]
+        [ExplicitKey]
+        public int Id { get; set; }
 
         [DataMember]
         public string Nome { get; set; }
@@ -22,10 +42,10 @@ namespace waCanalIlhas.DTO.Upload
         public string Caminho { get; set; }
 
         [DataMember]
-        public string DataUpload { get; set; }
+        public DateTime DataUpload { get; set; }
 
         [DataMember]
-        public string DataExclusao { get; set; }
+        public DateTime DataExclusao { get; set; }
 
         [DataMember]
         public char? Ativo { get; set; }
@@ -38,5 +58,6 @@ namespace waCanalIlhas.DTO.Upload
 
         [DataMember]
         public int? MatriculaExclusao { get; set; }
+        */
     }
 }

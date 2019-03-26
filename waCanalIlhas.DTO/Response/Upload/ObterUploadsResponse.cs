@@ -8,6 +8,6 @@ namespace waCanalIlhas.DTO.Response.Upload
     public class ObterUploadsResponse : BaseResponse
     {
         [DataMember]
-        public IList<UploadDTO> Uploads { get; set; }
+        public IEnumerable<UploadDTO> Uploads { get; set; }
     }
 }
