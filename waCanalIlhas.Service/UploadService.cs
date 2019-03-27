@@ -43,8 +43,16 @@ namespace waCanalIlhas.Service
 
         public DeletarUploadResponse DeletarArquivo(DeletarUploadRequest pDeletarUploadRequest)
         {
-             var deletarArquivo = _uploadDAL.DeletarArquivo(pDeletarUploadRequest);
-            return new DeletarUploadResponse { Mensagem = MensagensService.SUCESSO };
+            try
+            {
+                var deletarArquivo = _uploadDAL.DeletarArquivo(pDeletarUploadRequest);
+                return new DeletarUploadResponse { Mensagem = MensagensService.SUCESSO };
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public SavarUploadResponse SalvarUpload(SavarUploadRequest pUploadSalvarRequest)

@@ -32,9 +32,13 @@ namespace waCanalIlhas
 
             //  Serviços
             services.AddScoped<IUploadService, UploadService>();
+            services.AddScoped<ICanalIlhasService, CanalIlhasService>();
+
 
             // DAL
             services.AddScoped<IUploadDAL, UploadDAL>();
+            services.AddScoped<ICanalIlhasDAL, CanalIlhasDAL>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

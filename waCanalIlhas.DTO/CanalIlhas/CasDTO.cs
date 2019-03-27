@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Dapper.Contrib.Extensions;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace waCanalIlhas.DTO.CanalIlhas
 {
     [DataContract]
+    [Table("TB_SIN_LOCAL")]
     public class CasDTO
     {
         [DataMember]
-        public int Id { get; set; }
+        [ExplicitKey]
+        public int ID_LOCAL { get; set; }
 
         [DataMember]
-        public string Nome { get; set; }
+        public string NM_SIGLA { get; set; }
     }
 }

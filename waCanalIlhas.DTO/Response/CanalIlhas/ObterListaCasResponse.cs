@@ -5,9 +5,9 @@ using waCanalIlhas.DTO.CanalIlhas;
 namespace waCanalIlhas.DTO.Response.CanalIlhas
 {
     [DataContract]
-    public class ObterCasResponse :BaseResponse
+    public class ObterListaCasResponse : BaseResponse
     {
         [DataMember]
-        public CasDTO Cas { get; set; }
+        public IEnumerable<CasDTO> Cas { get; set; }
     }
 }

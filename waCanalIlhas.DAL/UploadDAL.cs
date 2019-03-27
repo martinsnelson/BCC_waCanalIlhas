@@ -36,11 +36,9 @@ namespace waCanalIlhas.DAL
 
         public IEnumerable<UploadDTO> ObterUploads()
         {
-            //var lUploads = new List<UploadDTO>();
             using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
             {
-                var t = conexao.GetAll<UploadDTO>();
-                return t;
+                return conexao.GetAll<UploadDTO>();
             }
         }
 
