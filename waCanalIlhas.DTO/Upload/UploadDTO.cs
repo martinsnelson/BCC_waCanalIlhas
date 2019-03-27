@@ -19,45 +19,27 @@ namespace waCanalIlhas.DTO.Upload
         public string TP_ARQUIVO_UPLOAD { get; set; }
 
         [DataMember]
-        public long NU_TAMANHO_ARQUIVO { get; set; }
+        public long? DS_TAMANHO_ARQUIVO { get; set; }
 
         [DataMember]
         public string NM_CAMINHO_ARQUIVO { get; set; }
 
-        /*
         [DataMember]
-        [ExplicitKey]
-        public int Id { get; set; }
+        public string DT_UPLOAD_ARQUIVO { get; set; }
 
         [DataMember]
-        public string Nome { get; set; }
+        public string DT_EXCLUSAO_ARQUIVO { get; set; }
 
         [DataMember]
-        public string Tipo { get; set; }
+        public byte? FL_ARQUIVO_ATIVO { get; set; }
 
         [DataMember]
-        public long Tamanho { get; set; }
+        public long? DS_DURACAO_ARQUIVO { get; set; }
 
         [DataMember]
-        public string Caminho { get; set; }
+        public int? NU_MATR_UPLOAD { get; set; }
 
         [DataMember]
-        public DateTime DataUpload { get; set; }
-
-        [DataMember]
-        public DateTime DataExclusao { get; set; }
-
-        [DataMember]
-        public char? Ativo { get; set; }
-
-        [DataMember]
-        public long? Duracao { get; set; }
-
-        [DataMember]
-        public int? MatriculaUpload { get; set; }
-
-        [DataMember]
-        public int? MatriculaExclusao { get; set; }
-        */
+        public int? NU_MATR_EXCLUSAO { get; set; }
     }
 }

@@ -7,5 +7,8 @@ namespace waCanalIlhas.Interface.Service
     {
         ObterListaCasResponse ObterListaCas();
         ObterCasResponse ObterCas(int pObterCasRequest);
+        ListaArquivosResponse ListaVideos();
+        ListaArquivosResponse ListaImagens();
+        ObterPlayListResponse ObterPlayList();
     }
 }

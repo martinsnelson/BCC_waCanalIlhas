@@ -45,5 +45,45 @@ namespace waCanalIlhas.Service
             
         }
 
+        public ListaArquivosResponse ListaVideos()
+        {
+            try
+            {
+                var videos = _CanalIlhasDAL.ListaVideos();
+                return new ListaArquivosResponse { Arquivos = videos };
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
+        public ListaArquivosResponse ListaImagens()
+        {
+            try
+            {
+                var imagens = _CanalIlhasDAL.ListaImagens();
+                return new ListaArquivosResponse { Arquivos = imagens };
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
+        public ObterPlayListResponse ObterPlayList()
+        {
+            try
+            {
+                var playList = _CanalIlhasDAL.ObterPlayList();
+                return new ObterPlayListResponse { PlayList = playList, Mensagem = string.Format(MensagensService.NUMEROS_DE_REGISTROS, playList.Count()) };
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
 }

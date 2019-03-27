@@ -2,6 +2,7 @@
 using waCanalIlhas.DTO.CanalIlhas;
 using waCanalIlhas.DTO.Request.CanalIlhas;
 using waCanalIlhas.DTO.Response.CanalIlhas;
+using waCanalIlhas.DTO.Upload;
 
 namespace waCanalIlhas.Interface.DAL
 {
@@ -9,5 +10,8 @@ namespace waCanalIlhas.Interface.DAL
     {
         IEnumerable<CasDTO> ObterListaCas();
         CasDTO ObterCas(int pObterCasRequest);
+        List<ArquivosDTO> ListaVideos();
+        List<ArquivosDTO> ListaImagens();      
+        IEnumerable<PlayListDTO> ObterPlayList();
     }
 }

@@ -20,18 +20,39 @@ namespace waCanalIlhas.Controllers
             _canalIlhasService = canalIlhasService;
         }
 
-        // GET v1/api/CanalIlhas
+        // GET v1/api/CanalIlhas/ObterListaCas
         [HttpGet]
         public ObterListaCasResponse ObterListaCas()
         {
             return _canalIlhasService.ObterListaCas();
         }
 
-        // GET v1/api/CanalIlhas/
+        // GET v1/api/CanalIlhas/ObterCas/int
         [HttpGet("{pObterCasRequest}")]
         public ObterCasResponse ObterCas(int pObterCasRequest)
         {
             return _canalIlhasService.ObterCas(pObterCasRequest);
+        }
+
+        // GET v1/api/CanalIlhas/ListaVideos
+        [HttpGet]
+        public ListaArquivosResponse ListaVideos()
+        {
+            return _canalIlhasService.ListaVideos();
+        }
+
+        // GET v1/api/CanalIlhas/ListaImagens
+        [HttpGet]
+        public ListaArquivosResponse ListaImagens()
+        {
+            return _canalIlhasService.ListaImagens();
+        }
+
+        // GET v1/api/CanalIlhas
+        [HttpGet]
+        public ObterPlayListResponse ObterPlayList()
+        {
+            return _canalIlhasService.ObterPlayList();
         }
     }
 }
