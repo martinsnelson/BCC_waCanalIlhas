@@ -81,7 +81,7 @@ namespace waCanalIlhas.DAL
                                                 --,DT_EXCLUSAO_ARQUIVO
                                                 ,FL_ARQUIVO_ATIVO
                                                 --,DS_DURACAO_ARQUIVO
-                                                ,NU_MATR_UPLOAD
+                                                --,NU_MATR_UPLOAD
                                                 --NU_MATR_EXCLUSAO
                                                 )
                                             VALUES(
@@ -94,7 +94,7 @@ namespace waCanalIlhas.DAL
                                                 --,:DT_EXCLUSAO_ARQUIVO
                                                 ,:FL_ARQUIVO_ATIVO
                                                 --,:DS_DURACAO_ARQUIVO
-                                                ,:NU_MATR_UPLOAD
+                                                --,:NU_MATR_UPLOAD
                                                 --:NU_MATR_EXCLUSAO
                                                 )";
                 DynamicParameters dyParam = new DynamicParameters();
@@ -108,7 +108,7 @@ namespace waCanalIlhas.DAL
                 //dyParam.Add("DT_EXCLUSAO", pUploadSavarRequest.Upload.DataExclusao, DbType.String, ParameterDirection.Input);
                 dyParam.Add("FL_ARQUIVO_ATIVO", pUploadSavarRequest.Upload.FL_ARQUIVO_ATIVO, DbType.Byte, ParameterDirection.Input);
                 //dyParam.Add("DURACAO", pUploadSavarRequest.Upload.Duracao, DbType.Int64, ParameterDirection.Input);
-                dyParam.Add("NU_MATR_UPLOAD", pUploadSavarRequest.Upload.NU_MATR_UPLOAD, DbType.Int32, ParameterDirection.Input);
+                //dyParam.Add("NU_MATR_UPLOAD", pUploadSavarRequest.Upload.NU_MATR_UPLOAD, DbType.Int32, ParameterDirection.Input);
                 //dyParam.Add("NU_MATR_EXCLUSAO", pUploadSavarRequest.Upload.MatriculaExclusao, DbType.Int64, ParameterDirection.Input);
                 //dyParam.Add("ATIVO", pUploadSavarRequest.Upload.Ativo, DbType.Byte == true ? '1' : '0', ParameterDirection.Input);
        
