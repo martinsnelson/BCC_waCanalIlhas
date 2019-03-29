@@ -35,5 +35,10 @@ namespace waCanalIlhas.ServiceAgent
         {
             return Http.Post<InserirPlayListResponse>("v1/api/CanalIlhas/InserirPlayList", pInserirPlayListRequest);
         }
+
+        public ExcluirPlayListResponse ExcluirPlayList(ExcluirPlayListRequest pExcluirPlayListRequest)
+        {
+            return Http.Delete<ExcluirPlayListResponse>("v1/api/CanalIlhas/ExcluirPlayList", pExcluirPlayListRequest);
+        }
     }
 }

@@ -71,31 +71,15 @@ namespace waCanalIlhas.DAL
             {
                 var sSql = "SELECT SQ_CILHAS_ARQUIVO_UPLOAD.NEXTVAL FROM DUAL";
                 Int64 SQ = conexao.QueryFirstOrDefault<Int64>(sSql, null);
-                sSql = @"INSERT INTO TB_CILHAS_ARQUIVO_UPLOAD (
-                                                ID_ARQUIVO_UPLOAD
-                                                ,NM_ARQUIVO_UPLOAD
-                                                ,TP_ARQUIVO_UPLOAD
-                                                ,DS_TAMANHO_ARQUIVO
-                                                ,NM_CAMINHO_ARQUIVO
-                                                ,DT_UPLOAD_ARQUIVO
-                                                --,DT_EXCLUSAO_ARQUIVO
-                                                ,FL_ARQUIVO_ATIVO
+                sSql = @"INSERT INTO TB_CILHAS_ARQUIVO_UPLOAD (ID_ARQUIVO_UPLOAD ,NM_ARQUIVO_UPLOAD ,TP_ARQUIVO_UPLOAD ,DS_TAMANHO_ARQUIVO 
+                                                                ,NM_CAMINHO_ARQUIVO ,DT_UPLOAD_ARQUIVO ,FL_ARQUIVO_ATIVO
                                                 --,DS_DURACAO_ARQUIVO
-                                                ,NU_MATR_UPLOAD
-                                                --NU_MATR_EXCLUSAO
+                                                --,NU_MATR_UPLOAD                                                
                                                 )
-                                            VALUES(
-                                                :ID_ARQUIVO_UPLOAD
-                                                ,:NM_ARQUIVO_UPLOAD
-                                                ,:TP_ARQUIVO_UPLOAD
-                                                ,:DS_TAMANHO_ARQUIVO
-                                                ,:NM_CAMINHO_ARQUIVO
-                                                ,:DT_UPLOAD_ARQUIVO
-                                                --,:DT_EXCLUSAO_ARQUIVO
-                                                ,:FL_ARQUIVO_ATIVO
+                                            VALUES(:ID_ARQUIVO_UPLOAD ,:NM_ARQUIVO_UPLOAD ,:TP_ARQUIVO_UPLOAD ,:DS_TAMANHO_ARQUIVO 
+                                                                ,:NM_CAMINHO_ARQUIVO ,:DT_UPLOAD_ARQUIVO ,:FL_ARQUIVO_ATIVO
                                                 --,:DS_DURACAO_ARQUIVO
-                                                ,:NU_MATR_UPLOAD
-                                                --:NU_MATR_EXCLUSAO
+                                                --,:NU_MATR_UPLOAD                                                
                                                 )";
                 DynamicParameters dyParam = new DynamicParameters();
                 dyParam.Add("ID_ARQUIVO_UPLOAD", SQ, DbType.Int64, ParameterDirection.Input);
@@ -104,14 +88,9 @@ namespace waCanalIlhas.DAL
                 dyParam.Add("DS_TAMANHO_ARQUIVO", pUploadSavarRequest.Upload.DS_TAMANHO_ARQUIVO, DbType.Int64, ParameterDirection.Input);
                 dyParam.Add("NM_CAMINHO_ARQUIVO", pUploadSavarRequest.Upload.NM_CAMINHO_ARQUIVO, DbType.String, ParameterDirection.Input);
                 dyParam.Add("DT_UPLOAD_ARQUIVO", pUploadSavarRequest.Upload.DT_UPLOAD_ARQUIVO, DbType.String, ParameterDirection.Input);
- 
-                //dyParam.Add("DT_EXCLUSAO", pUploadSavarRequest.Upload.DataExclusao, DbType.String, ParameterDirection.Input);
                 dyParam.Add("FL_ARQUIVO_ATIVO", pUploadSavarRequest.Upload.FL_ARQUIVO_ATIVO, DbType.Byte, ParameterDirection.Input);
                 //dyParam.Add("DURACAO", pUploadSavarRequest.Upload.Duracao, DbType.Int64, ParameterDirection.Input);
-                dyParam.Add("NU_MATR_UPLOAD", pUploadSavarRequest.Upload.NU_MATR_UPLOAD, DbType.Int32, ParameterDirection.Input);
-                //dyParam.Add("NU_MATR_EXCLUSAO", pUploadSavarRequest.Upload.MatriculaExclusao, DbType.Int64, ParameterDirection.Input);
-                //dyParam.Add("ATIVO", pUploadSavarRequest.Upload.Ativo, DbType.Byte == true ? '1' : '0', ParameterDirection.Input);
-       
+                //dyParam.Add("NU_MATR_UPLOAD", pUploadSavarRequest.Upload.NU_MATR_UPLOAD, DbType.Int32, ParameterDirection.Input);       
                 conexao.Execute(sSql, dyParam, commandType: CommandType.Text);
                 return SQ;
             }

@@ -10,18 +10,18 @@ namespace waCanalIlhas.Service
 {
     public class CanalIlhasService : ICanalIlhasService
     {
-        private readonly ICanalIlhasDAL _CanalIlhasDAL;
+        private readonly ICanalIlhasDAL _canalIlhasDAL;
 
         public CanalIlhasService(ICanalIlhasDAL canalIlhasDAL)
         {
-            _CanalIlhasDAL = canalIlhasDAL;
+            _canalIlhasDAL = canalIlhasDAL;
         }
 
         public ObterListaCasResponse ObterListaCas()
         {
             try
             {
-                var lCas = _CanalIlhasDAL.ObterListaCas();
+                var lCas = _canalIlhasDAL.ObterListaCas();
                 return new ObterListaCasResponse { Cas = lCas, Mensagem = string.Format(MensagensService.NUMEROS_DE_REGISTROS, lCas.Count()) };
             }
             catch (Exception)
@@ -35,10 +35,10 @@ namespace waCanalIlhas.Service
         {
             try
             {
-                var cas = _CanalIlhasDAL.ObterCas(pObterCasRequest);
+                var cas = _canalIlhasDAL.ObterCas(pObterCasRequest);
                 return new ObterCasResponse { Cas = cas };
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -49,10 +49,10 @@ namespace waCanalIlhas.Service
         {
             try
             {
-                var videos = _CanalIlhasDAL.ListaVideos();
+                var videos = _canalIlhasDAL.ListaVideos();
                 return new ListaArquivosResponse { Arquivos = videos };
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -62,10 +62,10 @@ namespace waCanalIlhas.Service
         {
             try
             {
-                var imagens = _CanalIlhasDAL.ListaImagens();
+                var imagens = _canalIlhasDAL.ListaImagens();
                 return new ListaArquivosResponse { Arquivos = imagens };
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -75,7 +75,7 @@ namespace waCanalIlhas.Service
         {
             try
             {
-                var playList = _CanalIlhasDAL.ObterPlayList();
+                var playList = _canalIlhasDAL.ObterPlayList();
                 return new ObterPlayListResponse { PlayList = playList, Mensagem = string.Format(MensagensService.NUMEROS_DE_REGISTROS, playList.Count()) };
             }
             catch (Exception)
@@ -89,11 +89,25 @@ namespace waCanalIlhas.Service
         {
             try
             {
-                var inserirPlayList = _CanalIlhasDAL.InserirPlayList(pInserirPlayListRequest);
+                var inserirPlayList = _canalIlhasDAL.InserirPlayList(pInserirPlayListRequest);
                 return new InserirPlayListResponse { Mensagem = MensagensService.SUCESSO };
             }
-            catch (Exception e)
+            catch (Exception)
             {
+                throw;
+            }
+        }
+
+        public ExcluirPlayListResponse ExcluirPlayList(ExcluirPlayListRequest pExcluirPlayListRequest)
+        {
+            try
+            {
+                var excluirPlayList = _canalIlhasDAL.ExcluirPlayList(pExcluirPlayListRequest);
+                return new ExcluirPlayListResponse { Mensagem = MensagensService.SUCESSO };
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }

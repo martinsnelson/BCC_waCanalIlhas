@@ -23,7 +23,7 @@ namespace waCanalIlhas.Service
                 var lUploads = _uploadDAL.ObterUploads();
                 return new ObterUploadsResponse{ Uploads = lUploads };
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -35,7 +35,7 @@ namespace waCanalIlhas.Service
             {
                 return _uploadDAL.ObterUpload(pObterUploadRequest);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -62,7 +62,7 @@ namespace waCanalIlhas.Service
                 var salvarUpload = _uploadDAL.SalvarUpload(pUploadSalvarRequest);
                 return new SavarUploadResponse { Mensagem = MensagensService.SUCESSO };
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }

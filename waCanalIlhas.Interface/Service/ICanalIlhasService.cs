@@ -11,5 +11,6 @@ namespace waCanalIlhas.Interface.Service
         ListaArquivosResponse ListaImagens();
         ObterPlayListResponse ObterPlayList();
         InserirPlayListResponse InserirPlayList(InserirPlayListRequest pInserirPlayListRequest);
+        ExcluirPlayListResponse ExcluirPlayList(ExcluirPlayListRequest pExcluirPlayListRequest);
     }
 }

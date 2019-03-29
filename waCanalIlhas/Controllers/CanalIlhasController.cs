@@ -60,5 +60,11 @@ namespace waCanalIlhas.Controllers
         {
             return _canalIlhasService.InserirPlayList(pInserirPlayListRequest);
         }
+
+        [HttpDelete]
+        public ExcluirPlayListResponse ExcluirPlayList(ExcluirPlayListRequest pExcluirPlayListRequest)
+        {
+            return _canalIlhasService.ExcluirPlayList(pExcluirPlayListRequest);
+        }
     }
 }

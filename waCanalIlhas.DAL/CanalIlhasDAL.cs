@@ -110,7 +110,17 @@ namespace waCanalIlhas.DAL
                 return SQ;
             }
         }
-        
+
+        public Int64 ExcluirPlayList(ExcluirPlayListRequest pExcluirPlayListRequest)
+        {
+            using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
+            {
+                var sSql = "DELETE FROM TB_CILHAS_PLAYLIST WHERE NM_PLAYLIST = ";
+                var sSqlExecute = String.Format("{0}'{1}'", sSql, pExcluirPlayListRequest.PlayList.NM_PLAYLIST);
+                return conexao.Execute(sSqlExecute, null, commandType: CommandType.Text);
+            }
+        }
+
 
         //public Int64 InserirPlayList(InserirPlayListRequest pInserirPlayListRequest)
         //{

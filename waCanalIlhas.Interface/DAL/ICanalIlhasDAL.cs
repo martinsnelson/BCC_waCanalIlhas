@@ -15,7 +15,7 @@ namespace waCanalIlhas.Interface.DAL
         List<ArquivosDTO> ListaImagens();      
         IEnumerable<PlayListDTO> ObterPlayList();
         Int64 InserirPlayList(InserirPlayListRequest pInserirPlayListRequest);
-
+        Int64 ExcluirPlayList(ExcluirPlayListRequest pExcluirPlayListRequest);
         //Int64 InserirPlayList(InserirPlayListRequest pInserirPlayListRequest);
     }
 }
