@@ -85,5 +85,18 @@ namespace waCanalIlhas.Service
             }
         }
 
+        public InserirPlayListResponse InserirPlayList(InserirPlayListRequest pInserirPlayListRequest)
+        {
+            try
+            {
+                var inserirPlayList = _CanalIlhasDAL.InserirPlayList(pInserirPlayListRequest);
+                return new InserirPlayListResponse { Mensagem = MensagensService.SUCESSO };
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
     }
 }

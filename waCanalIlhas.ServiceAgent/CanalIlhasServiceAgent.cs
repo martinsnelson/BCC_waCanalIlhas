@@ -30,5 +30,10 @@ namespace waCanalIlhas.ServiceAgent
         {
             return Http.Get<ObterPlayListResponse>("v1/api/CanalIlhas/ObterPlayList");
         }
+
+        public InserirPlayListResponse InserirPlayList(InserirPlayListRequest pInserirPlayListRequest)
+        {
+            return Http.Post<InserirPlayListResponse>("v1/api/CanalIlhas/InserirPlayList", pInserirPlayListRequest);
+        }
     }
 }

@@ -54,5 +54,11 @@ namespace waCanalIlhas.Controllers
         {
             return _canalIlhasService.ObterPlayList();
         }
+
+        [HttpPost]
+        public InserirPlayListResponse InserirPlayList([FromBody] InserirPlayListRequest pInserirPlayListRequest)
+        {
+            return _canalIlhasService.InserirPlayList(pInserirPlayListRequest);
+        }
     }
 }

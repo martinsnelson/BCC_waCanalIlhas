@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using waCanalIlhas.DTO.CanalIlhas;
 using waCanalIlhas.DTO.Request.CanalIlhas;
 using waCanalIlhas.DTO.Response.CanalIlhas;
@@ -13,5 +14,8 @@ namespace waCanalIlhas.Interface.DAL
         List<ArquivosDTO> ListaVideos();
         List<ArquivosDTO> ListaImagens();      
         IEnumerable<PlayListDTO> ObterPlayList();
+        Int64 InserirPlayList(InserirPlayListRequest pInserirPlayListRequest);
+
+        //Int64 InserirPlayList(InserirPlayListRequest pInserirPlayListRequest);
     }
 }
