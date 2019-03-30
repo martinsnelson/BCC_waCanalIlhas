@@ -47,7 +47,7 @@ namespace waCanalIlhas.DAL
         {
             using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
             {
-                var sSql = "SELECT AU.NM_ARQUIVO_UPLOAD, AU.TP_ARQUIVO_UPLOAD FROM TB_CILHAS_ARQUIVO_UPLOAD AU WHERE AU.TP_ARQUIVO_UPLOAD IN ('.wmv', '.mp4', '.mpeg-4', '.avi')";
+                var sSql = "SELECT AU.ID_ARQUIVO_UPLOAD, AU.NM_ARQUIVO_UPLOAD, AU.TP_ARQUIVO_UPLOAD FROM TB_CILHAS_ARQUIVO_UPLOAD AU WHERE AU.TP_ARQUIVO_UPLOAD IN ('.wmv', '.mp4', '.mpeg-4', '.avi')";
                 var sSqlRetorno = conexao.Query<ArquivosDTO>(sSql).ToList();
                 return sSqlRetorno;
             }
@@ -57,7 +57,7 @@ namespace waCanalIlhas.DAL
         {
             using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
             {
-                var sSql = "SELECT AU.NM_ARQUIVO_UPLOAD, AU.TP_ARQUIVO_UPLOAD FROM TB_CILHAS_ARQUIVO_UPLOAD AU WHERE AU.TP_ARQUIVO_UPLOAD IN ('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.pps', '.pdf', '.jpg')";
+                var sSql = "SELECT AU.ID_ARQUIVO_UPLOAD, AU.NM_ARQUIVO_UPLOAD, AU.TP_ARQUIVO_UPLOAD FROM TB_CILHAS_ARQUIVO_UPLOAD AU WHERE AU.TP_ARQUIVO_UPLOAD IN ('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.pps', '.pdf', '.jpg')";
                 var sSqlRetorno = conexao.Query<ArquivosDTO>(sSql).ToList();
                 return sSqlRetorno;
             }
@@ -72,53 +72,89 @@ namespace waCanalIlhas.DAL
         }
 
         public Int64 InserirPlayList(InserirPlayListRequest pInserir)
-        {   
+        {
             using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
             {
-                var sSql = "SELECT SQ_CILHAS_UPLOAD_PLAYLIST.NEXTVAL FROM DUAL";
-                Int64 SQ = conexao.QueryFirstOrDefault<Int64>(sSql, null);
-
-                    sSql = "SELECT SQ_CILHAS_UPLOAD_PLAYLIST.NEXTVAL FROM DUAL";
-                Int64 SQRel = conexao.QueryFirstOrDefault<Int64>(sSql, null);
-
-                //remover
-                var rafa = new PlayListDTO { ID_PLAYLIST = Convert.ToInt32(SQ), NM_PLAYLIST = "Nelson", TP_PLAYLIST = ".mp4" };
+                var sSql = "SELECT SQ_CILHAS_PLAYLIST.NEXTVAL FROM DUAL";
+                Int64 SQ = Convert.ToInt32(conexao.QueryFirstOrDefault<Int64>(sSql, null));
+                //sSql = "SELECT SQ_CILHAS_UPLOAD_PLAYLIST.NEXTVAL FROM DUAL";
+                //Int64 SQRel = Convert.ToInt32(conexao.QueryFirstOrDefault<Int64>(sSql, null));
 
                 conexao.Open();
                 OracleCommand command = conexao.CreateCommand();
                 OracleTransaction transaction = conexao.BeginTransaction();
+                try
+                {
+                    sSql = "INSERT INTO TB_CILHAS_PLAYLIST(ID_PLAYLIST, NM_PLAYLIST, TP_PLAYLIST) values(:ID_PLAYLIST, :NM_PLAYLIST, :NM_CAS)";
+                    var pTranparameters = new { ID_PLAYLIST = SQ, NM_PLAYLIST = pInserir.PlayList.NM_PLAYLIST, NM_CAS = pInserir.PlayList.NM_CAS };
+                    conexao.Execute(sSql, pTranparameters, transaction);
 
-                sSql = "INSERT INTO TB_CILHAS_PLAYLIST(ID_PLAYLIST, NM_PLAYLIST, TP_PLAYLIST) values(:ID_PLAYLIST, :NOME, :TP_ARQUIVO)";
-                            //var sql = "update Widget set Quantity = @quantity where WidgetId = id";
-                            //var parameters = new { ID_PLAYLIST = pInserir.PlayList.ID_PLAYLIST,
-                            //    pInserir.PlayList.NM_PLAYLIST, pInserir.PlayList.TP_PLAYLIST
-                            //};
-                var pTranparameters = new { ID_PLAYLIST = rafa.ID_PLAYLIST, NOME = rafa.NM_PLAYLIST, TP_ARQUIVO = rafa.TP_PLAYLIST };
-                conexao.Execute(sSql, pTranparameters, transaction);
+                    var arquivosParaUpload = pInserir.PlayList.TP_PLAYLIST.Split(",");
+                    
+                    foreach (var aUpload in arquivosParaUpload)
+                    {
 
-                var rafa2 = new PlayListDTO { ID_PLAYLIST = Convert.ToInt32(SQ), NM_PLAYLIST = "Nelson", TP_PLAYLIST = ".mp4" };
+                        sSql = "INSERT INTO TB_CILHAS_UPLOAD_PLAYLIST(ID_UPLOAD_PLAYLIST, CD_ARQUIVO_UPLOAD, CD_PLAYLIST) values(SQ_CILHAS_UPLOAD_PLAYLIST.NEXTVAL, :CD_ARQUIVO_UPLOAD, :CD_PLAYLIST)";
+                        var sTranparameters = new { CD_ARQUIVO_UPLOAD = Convert.ToInt32(aUpload), CD_PLAYLIST = SQ };
+                        conexao.Execute(sSql, sTranparameters, transaction);
 
-                sSql = "INSERT INTO TB_CILHAS_UPLOAD_PLAYLIST(ID_UPLOAD_PLAYLIST, CD_ARQUIVO_UPLOAD, CD_PLAYLIST) values(:ID_UPLOAD_PLAYLIST, :CD_ARQUIVO_UPLOAD, :CD_PLAYLIST)";
+                        transaction.Commit();
+                    }                    
 
-                var sTranparameters = new { ID_UPLOAD_PLAYLIST = Convert.ToInt32(SQRel), CD_ARQUIVO_UPLOAD = 95, CD_PLAYLIST = rafa.ID_PLAYLIST };
-                conexao.Execute(sSql, sTranparameters, transaction);
+                    conexao.Close();
 
-                transaction.Commit();
-                        
-                //transaction.Rollback();
-
-                return SQ;
+                    return SQ;
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    conexao.Close();
+                    throw;
+                }
             }
         }
 
         public Int64 ExcluirPlayList(ExcluirPlayListRequest pExcluirPlayListRequest)
         {
-            using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
-            {
-                var sSql = "DELETE FROM TB_CILHAS_PLAYLIST WHERE NM_PLAYLIST = ";
-                var sSqlExecute = String.Format("{0}'{1}'", sSql, pExcluirPlayListRequest.PlayList.NM_PLAYLIST);
-                return conexao.Execute(sSqlExecute, null, commandType: CommandType.Text);
-            }
+                using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
+                {
+                    Int64 SQ = 1;
+                    //var sSql = "SELECT SQ_CILHAS_PLAYLIST.NEXTVAL FROM DUAL";
+                    //Int64 SQ = Convert.ToInt32(conexao.QueryFirstOrDefault<Int64>(sSql, null));
+
+                    //sSql = "SELECT SQ_CILHAS_UPLOAD_PLAYLIST.NEXTVAL FROM DUAL";
+                    //Int64 SQRel = Convert.ToInt32(conexao.QueryFirstOrDefault<Int64>(sSql, null));
+
+                    conexao.Open();
+                    OracleCommand command = conexao.CreateCommand();
+                    OracleTransaction transaction = conexao.BeginTransaction();
+                    try
+                    {
+                        var sSql = "DELETE FROM TB_CILHAS_UPLOAD_PLAYLIST WHERE CD_PLAYLIST = CD_PLAYLIST";
+                        var pTranparameters = new { CD_PLAYLIST = pExcluirPlayListRequest.PlayList.ID_PLAYLIST };
+                        conexao.Execute(sSql, pTranparameters, transaction);
+
+                        sSql = "DELETE FROM TB_CILHAS_PLAYLIST WHERE ID_PLAYLIST = ID_PLAYLIST";
+                        var sTranparameters = new { ID_PLAYLIST = pExcluirPlayListRequest.PlayList.ID_PLAYLIST };
+                        conexao.Execute(sSql, sTranparameters, transaction);
+
+                        transaction.Commit();
+                        conexao.Close();
+
+                        return SQ;
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        conexao.Close();
+                        throw;
+                    }
+                }
+                //using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
+                //{
+                //    var sSql = String.Format("DELETE FROM TB_CILHAS_PLAYLIST WHERE ID_PLAYLIST = {0}", pExcluirPlayListRequest.PlayList.ID_PLAYLIST);
+                //    return conexao.Execute(sSql, null, commandType: CommandType.Text);
+                //}
         }
 
 

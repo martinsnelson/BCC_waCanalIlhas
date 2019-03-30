@@ -9,6 +9,9 @@ namespace waCanalIlhas.DTO.CanalIlhas
     {
         [DataMember]
         [ExplicitKey]
+        public int ID_ARQUIVO_UPLOAD { get; set; }
+
+        [DataMember]
         public string TP_ARQUIVO_UPLOAD { get; set; }
 
         [DataMember]

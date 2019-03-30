@@ -48,7 +48,7 @@ namespace waCanalIlhas.Service
                 var deletarArquivo = _uploadDAL.DeletarArquivo(pDeletarUploadRequest);
                 return new DeletarUploadResponse { Mensagem = MensagensService.SUCESSO };
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 throw;

@@ -92,7 +92,7 @@ namespace waCanalIlhas.Service
                 var inserirPlayList = _canalIlhasDAL.InserirPlayList(pInserirPlayListRequest);
                 return new InserirPlayListResponse { Mensagem = MensagensService.SUCESSO };
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw;
             }
@@ -105,7 +105,7 @@ namespace waCanalIlhas.Service
                 var excluirPlayList = _canalIlhasDAL.ExcluirPlayList(pExcluirPlayListRequest);
                 return new ExcluirPlayListResponse { Mensagem = MensagensService.SUCESSO };
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 throw;
