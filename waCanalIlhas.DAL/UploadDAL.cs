@@ -59,9 +59,14 @@ namespace waCanalIlhas.DAL
         {
             using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
             {
-                var sSql = "DELETE FROM TB_CILHAS_ARQUIVO_UPLOAD WHERE NM_ARQUIVO_UPLOAD = ";
-                var sSqlExecute = String.Format("{0}'{1}'", sSql, pDeletarUploadRequest.Upload.NM_ARQUIVO_UPLOAD);
-                return conexao.Execute(sSqlExecute, null, commandType: CommandType.Text);
+                //var sSql = "DELETE FROM TB_CILHAS_ARQUIVO_UPLOAD WHERE NM_ARQUIVO_UPLOAD = ";
+                //var sSqlExecute = String.Format("{0}'{1}'", sSql, pDeletarUploadRequest.Upload.NM_ARQUIVO_UPLOAD);
+                //return conexao.Execute(sSqlExecute, null, commandType: CommandType.Text);
+                var sSql = String.Format("DELETE FROM TB_CILHAS_UPLOAD_PLAYLIST WHERE CD_ARQUIVO_UPLOAD = {0}", pDeletarUploadRequest.Upload.ID_ARQUIVO_UPLOAD);
+                var executeSql = conexao.Execute(sSql, null, commandType: CommandType.Text);
+
+                sSql = String.Format("DELETE FROM TB_CILHAS_ARQUIVO_UPLOAD WHERE ID_ARQUIVO_UPLOAD = {0}", pDeletarUploadRequest.Upload.ID_ARQUIVO_UPLOAD);
+                return executeSql = conexao.Execute(sSql, null, commandType: CommandType.Text);
             }
         }
 

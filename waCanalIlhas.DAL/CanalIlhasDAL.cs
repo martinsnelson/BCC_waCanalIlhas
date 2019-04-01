@@ -85,8 +85,8 @@ namespace waCanalIlhas.DAL
                 OracleTransaction transaction = conexao.BeginTransaction();
                 try
                 {
-                    sSql = "INSERT INTO TB_CILHAS_PLAYLIST(ID_PLAYLIST, NM_PLAYLIST, TP_PLAYLIST) values(:ID_PLAYLIST, :NM_PLAYLIST, :NM_CAS)";
-                    var pTranparameters = new { ID_PLAYLIST = SQ, NM_PLAYLIST = pInserir.PlayList.NM_PLAYLIST, NM_CAS = pInserir.PlayList.NM_CAS };
+                    sSql = "INSERT INTO TB_CILHAS_PLAYLIST(ID_PLAYLIST, NM_PLAYLIST, TP_PLAYLIST, NM_CAS) values(:ID_PLAYLIST, :NM_PLAYLIST, :TP_PLAYLIST, :NM_CAS)";
+                    var pTranparameters = new { ID_PLAYLIST = SQ, NM_PLAYLIST = pInserir.PlayList.NM_PLAYLIST, TP_PLAYLIST = pInserir.PlayList.TP_PLAYLIST, NM_CAS = pInserir.PlayList.NM_CAS };
                     conexao.Execute(sSql, pTranparameters, transaction);
 
                     var arquivosParaUpload = pInserir.PlayList.TP_PLAYLIST.Split(",");
@@ -119,42 +119,43 @@ namespace waCanalIlhas.DAL
                 using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
                 {
                     Int64 SQ = 1;
-                    //var sSql = "SELECT SQ_CILHAS_PLAYLIST.NEXTVAL FROM DUAL";
-                    //Int64 SQ = Convert.ToInt32(conexao.QueryFirstOrDefault<Int64>(sSql, null));
 
-                    //sSql = "SELECT SQ_CILHAS_UPLOAD_PLAYLIST.NEXTVAL FROM DUAL";
-                    //Int64 SQRel = Convert.ToInt32(conexao.QueryFirstOrDefault<Int64>(sSql, null));
+                var sSql = String.Format("DELETE FROM TB_CILHAS_UPLOAD_PLAYLIST WHERE CD_PLAYLIST = {0}", pExcluirPlayListRequest.PlayList.ID_PLAYLIST);
+                var executeSql = conexao.Execute(sSql, null, commandType: CommandType.Text);
 
-                    conexao.Open();
-                    OracleCommand command = conexao.CreateCommand();
-                    OracleTransaction transaction = conexao.BeginTransaction();
-                    try
-                    {
-                        var sSql = "DELETE FROM TB_CILHAS_UPLOAD_PLAYLIST WHERE CD_PLAYLIST = CD_PLAYLIST";
-                        var pTranparameters = new { CD_PLAYLIST = pExcluirPlayListRequest.PlayList.ID_PLAYLIST };
-                        conexao.Execute(sSql, pTranparameters, transaction);
+                sSql = String.Format("DELETE FROM TB_CILHAS_PLAYLIST WHERE ID_PLAYLIST = {0}", pExcluirPlayListRequest.PlayList.ID_PLAYLIST);
+                executeSql = conexao.Execute(sSql, null, commandType: CommandType.Text);
 
-                        sSql = "DELETE FROM TB_CILHAS_PLAYLIST WHERE ID_PLAYLIST = ID_PLAYLIST";
-                        var sTranparameters = new { ID_PLAYLIST = pExcluirPlayListRequest.PlayList.ID_PLAYLIST };
-                        conexao.Execute(sSql, sTranparameters, transaction);
+                //    conexao.Open();
+                //    OracleCommand command = conexao.CreateCommand();
+                //    OracleTransaction transaction = conexao.BeginTransaction();
+                //    try
+                //    {
+                //        var sSql = "DELETE FROM TB_CILHAS_UPLOAD_PLAYLIST WHERE CD_PLAYLIST = CD_PLAYLIST";
+                //        var pTranparameters = new { CD_PLAYLIST = pExcluirPlayListRequest.PlayList.ID_PLAYLIST };
+                //        conexao.Execute(sSql, pTranparameters, transaction);
 
-                        transaction.Commit();
-                        conexao.Close();
+                //        sSql = "DELETE FROM TB_CILHAS_PLAYLIST WHERE ID_PLAYLIST = ID_PLAYLIST";
+                //        var sTranparameters = new { ID_PLAYLIST = pExcluirPlayListRequest.PlayList.ID_PLAYLIST };
+                //        conexao.Execute(sSql, sTranparameters, transaction);
+
+                //        transaction.Commit();
+                //        conexao.Close();
 
                         return SQ;
-                    }
-                    catch (Exception)
-                    {
-                        transaction.Rollback();
-                        conexao.Close();
-                        throw;
-                    }
-                }
-                //using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
-                //{
-                //    var sSql = String.Format("DELETE FROM TB_CILHAS_PLAYLIST WHERE ID_PLAYLIST = {0}", pExcluirPlayListRequest.PlayList.ID_PLAYLIST);
-                //    return conexao.Execute(sSql, null, commandType: CommandType.Text);
-                //}
+                //    }
+                //    catch (Exception)
+                //    {
+                //        transaction.Rollback();
+                //        conexao.Close();
+                //        throw;
+                //    }
+            }
+            //using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
+            //{
+            //    var sSql = String.Format("DELETE FROM TB_CILHAS_PLAYLIST WHERE ID_PLAYLIST = {0}", pExcluirPlayListRequest.PlayList.ID_PLAYLIST);
+            //    return conexao.Execute(sSql, null, commandType: CommandType.Text);
+            //}
         }
 
 
