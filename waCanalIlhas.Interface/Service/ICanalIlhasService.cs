@@ -10,7 +10,9 @@ namespace waCanalIlhas.Interface.Service
         ListaArquivosResponse ListaVideos();
         ListaArquivosResponse ListaImagens();
         ObterPlayListResponse ObterPlayList();
+        ObterPlayListParaEditResponse ObterPlayEdit(ObterPlayListParaEditRequest pObterPlayListParaEditRequest);
         InserirPlayListResponse InserirPlayList(InserirPlayListRequest pInserirPlayListRequest);
         ExcluirPlayListResponse ExcluirPlayList(ExcluirPlayListRequest pExcluirPlayListRequest);
+        //ObterPlayListParaEditResponse ObterPlayListParaEdit();
     }
 }

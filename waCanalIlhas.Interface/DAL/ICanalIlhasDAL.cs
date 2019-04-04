@@ -12,10 +12,13 @@ namespace waCanalIlhas.Interface.DAL
         IEnumerable<CasDTO> ObterListaCas();
         CasDTO ObterCas(int pObterCasRequest);
         List<ArquivosDTO> ListaVideos();
-        List<ArquivosDTO> ListaImagens();      
+        List<ArquivosDTO> ListaImagens();
+        List<PlayListDTO> ObterPlayListParaEdit();
         IEnumerable<PlayListDTO> ObterPlayList();
-        Int64 InserirPlayList(InserirPlayListRequest pInserirPlayListRequest);
+        IEnumerable<PlayListDTO> ObterPlayEdit(ObterPlayListParaEditRequest pObterPlayEdit);
         Int64 ExcluirPlayList(ExcluirPlayListRequest pExcluirPlayListRequest);
-        //Int64 InserirPlayList(InserirPlayListRequest pInserirPlayListRequest);
+        Int64 InserirPlayList(InserirPlayListRequest pInserirPlayListRequest);
+        //List<PlayListDTO> ObterPlayList();
+        //Int64 ObterPlayList();        Int64 InserirPlayList(InserirPlayListRequest pInserirPlayListRequest);
     }
 }

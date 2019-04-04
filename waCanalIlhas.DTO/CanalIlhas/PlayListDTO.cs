@@ -1,4 +1,5 @@
 ﻿using Dapper.Contrib.Extensions;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace waCanalIlhas.DTO.CanalIlhas
@@ -46,5 +47,7 @@ namespace waCanalIlhas.DTO.CanalIlhas
 
         [DataMember]
         public int? NU_MATR_EXCLUSAO { get; set; }
+
+        public UploadPlayListRelDTO UploadPlayListRelDTO { get; set; }
     }
 }

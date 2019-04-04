@@ -55,6 +55,12 @@ namespace waCanalIlhas.Controllers
             return _canalIlhasService.ObterPlayList();
         }
 
+        [HttpGet("{pObterPlayListParaEditRequest}")]
+        public ObterPlayListParaEditResponse ObterPlayEdit(ObterPlayListParaEditRequest pObterPlayListParaEditRequest)
+        {
+            return _canalIlhasService.ObterPlayEdit(pObterPlayListParaEditRequest);
+        }
+
         [HttpPost]
         public InserirPlayListResponse InserirPlayList([FromBody] InserirPlayListRequest pInserirPlayListRequest)
         {
@@ -66,5 +72,11 @@ namespace waCanalIlhas.Controllers
         {
             return _canalIlhasService.ExcluirPlayList(pExcluirPlayListRequest);
         }
+
+        //[HttpGet]
+        //public ObterPlayListParaEditResponse ObterPlayListParaEdit()
+        //{
+        //    return _canalIlhasService.ObterPlayListParaEdit();
+        //}
     }
 }

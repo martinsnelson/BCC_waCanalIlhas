@@ -26,9 +26,24 @@ namespace waCanalIlhas.ServiceAgent
             return Http.Get<ListaArquivosResponse>("v1/api/CanalIlhas/ListaImagens");
         }
 
+        public ObterPlayListParaEditResponse Test()
+        {
+            return Http.Get<ObterPlayListParaEditResponse>("v1/api/CanalIlhas/Test");
+        }
+
         public ObterPlayListResponse ObterPlayList()
         {
             return Http.Get<ObterPlayListResponse>("v1/api/CanalIlhas/ObterPlayList");
+        }
+
+        public ObterPlayListParaEditResponse ObterPlayListParaEdit(ObterPlayListParaEditRequest pObterPlayListParaEditRequest)
+        {
+            return Http.Getp<ObterPlayListParaEditResponse>("v1/api/CanalIlhas/ObterPlayListParaEdit", pObterPlayListParaEditRequest);
+        }
+
+        public ObterPlayListParaEditResponse ObterPlayEdit(ObterPlayListParaEditRequest pObterPlayListParaEditRequest)
+        {
+            return Http.Getp<ObterPlayListParaEditResponse>("v1/api/CanalIlhas/ObterPlayEdit", pObterPlayListParaEditRequest);
         }
 
         public InserirPlayListResponse InserirPlayList(InserirPlayListRequest pInserirPlayListRequest)
@@ -40,5 +55,6 @@ namespace waCanalIlhas.ServiceAgent
         {
             return Http.Delete<ExcluirPlayListResponse>("v1/api/CanalIlhas/ExcluirPlayList", pExcluirPlayListRequest);
         }
+
     }
 }

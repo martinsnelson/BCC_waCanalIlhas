@@ -78,9 +78,22 @@ namespace waCanalIlhas.Service
                 var playList = _canalIlhasDAL.ObterPlayList();
                 return new ObterPlayListResponse { PlayList = playList, Mensagem = string.Format(MensagensService.NUMEROS_DE_REGISTROS, playList.Count()) };
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
+                throw;
+            }
+        }
+
+        public ObterPlayListParaEditResponse ObterPlayEdit(ObterPlayListParaEditRequest pObterPlayListParaEditRequest)
+        {
+            try
+            {
+                var pList = _canalIlhasDAL.ObterPlayEdit(pObterPlayListParaEditRequest);
+                return new ObterPlayListParaEditResponse { PlayList = pList };
+            }
+            catch (Exception)
+            {
                 throw;
             }
         }
@@ -111,6 +124,47 @@ namespace waCanalIlhas.Service
                 throw;
             }
         }
+
+        //public ObterPlayListParaEditResponse ObterPlayListParaEdit()
+        //{
+        //    try
+        //    {
+        //        var playList = _canalIlhasDAL.ObterPlayListParaEdit();
+        //        return new ObterPlayListParaEditResponse { PlayList = playList };
+        //    }
+        //    catch (Exception e)
+        //    {
+
+        //        throw;
+        //    }
+        //}
+
+        //public ObterPlayListParaEditResponse Test(int pObterPlayListEdit)
+        //{
+        //    try
+        //    {
+        //        var test = _canalIlhasDAL.Test(pObterPlayListEdit);
+        //        return new ObterPlayListParaEditResponse { PlayList = test };
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw;
+        //    }
+        //}
+
+        //public ObterPlayListParaEditResponse ObterPlayListParaEdit(int pObterPlayListEdit)
+        //{
+        //    try
+        //    {
+        //        var playList = _canalIlhasDAL.ObterPlayListParaEdit(pObterPlayListEdit);
+        //        return new ObterPlayListParaEditResponse { PlayList = playList };
+        //    }
+        //    catch (Exception e)
+        //    {
+
+        //        throw;
+        //    }
+        //}        
 
     }
 }

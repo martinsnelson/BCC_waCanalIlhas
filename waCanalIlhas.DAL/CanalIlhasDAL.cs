@@ -48,8 +48,7 @@ namespace waCanalIlhas.DAL
             using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
             {
                 var sSql = "SELECT AU.ID_ARQUIVO_UPLOAD, AU.NM_ARQUIVO_UPLOAD, AU.TP_ARQUIVO_UPLOAD FROM TB_CILHAS_ARQUIVO_UPLOAD AU WHERE AU.TP_ARQUIVO_UPLOAD IN ('.wmv', '.mp4', '.mpeg-4', '.avi')";
-                var sSqlRetorno = conexao.Query<ArquivosDTO>(sSql).ToList();
-                return sSqlRetorno;
+                return conexao.Query<ArquivosDTO>(sSql).ToList();
             }
         }
 
@@ -58,16 +57,71 @@ namespace waCanalIlhas.DAL
             using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
             {
                 var sSql = "SELECT AU.ID_ARQUIVO_UPLOAD, AU.NM_ARQUIVO_UPLOAD, AU.TP_ARQUIVO_UPLOAD FROM TB_CILHAS_ARQUIVO_UPLOAD AU WHERE AU.TP_ARQUIVO_UPLOAD IN ('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.pps', '.pdf', '.jpg')";
-                var sSqlRetorno = conexao.Query<ArquivosDTO>(sSql).ToList();
-                return sSqlRetorno;
+                return conexao.Query<ArquivosDTO>(sSql).ToList();                
             }
         }
+
+        //public List<PlayListDTO> ObterPlayListParaEdit()
+        //{
+        //    //Int64 a = 1;
+        //    using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
+        //    {
+        //        var sSql = "SELECT CP.ID_PLAYLIST, CP.NM_PLAYLIST, NM_CAS,  CP.TP_PLAYLIST, CP.FL_PLAYLIST_ATIVO, CP.NU_TAMANHO_PLAYLIST, " +
+        //                    "CP.NM_CAMINHO_PLAYLIST, CP.NU_MATR_EXCLUSAO,  CP.DT_EXCLUSAO_PLAYLIST, " +
+        //                    "CUP.ID_UPLOAD_PLAYLIST, CUP.CD_ARQUIVO_UPLOAD, CUP.CD_PLAYLIST, CUP.NU_ORDEM_EXIBICAO, " +
+        //                    "CAU.ID_ARQUIVO_UPLOAD, CAU.NM_ARQUIVO_UPLOAD " +
+        //                    "FROM TB_CILHAS_PLAYLIST CP " +
+        //                    "JOIN TB_CILHAS_UPLOAD_PLAYLIST CUP ON CP.ID_PLAYLIST = CUP.CD_PLAYLIST " +
+        //                    "JOIN TB_CILHAS_ARQUIVO_UPLOAD CAU ON CAU.ID_ARQUIVO_UPLOAD = CUP.CD_ARQUIVO_UPLOAD ";
+        //        //var sSqlRetorno = conexao.AsList<PlayListDTO>(sSql, null, CommandType: CommandType.Text);
+        //        //var sSqlRetorno = conexao.Execute(sSql, null, commandType: CommandType.Text);
+        //        var sSqlRetorno = conexao.Query<PlayListDTO>(sSql).ToList();
+        //        //var executeSql = conexao.Execute(sSql, null, commandType: CommandType.Text);
+        //        // connection.Query<MyClass,MyClass,Match>(sqlhere,(mc1,mc2)=>{ var match = new Match(); match.Left = mc1; match.Right = mc2; return match; }); 
+        //        return sSqlRetorno;
+        //    }
+        //}
 
         public IEnumerable<PlayListDTO> ObterPlayList()
         {
             using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
             {
                 return conexao.GetAll<PlayListDTO>();
+            }
+        }
+
+        public List<PlayListDTO> ObterPlayListParaEdit()
+        {
+            using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
+            {
+                var sql =
+                        "SELECT C.ID_PLAYLIST, C.NM_PLAYLIST, C.FL_PLAYLIST_ATIVO, " +
+                        "A.ID_UPLOAD_PLAYLIST, A.CD_ARQUIVO_UPLOAD, A.NU_ORDEM_EXIBICAO " +
+                        "FROM TB_CILHAS_PLAYLIST C " +
+                        "JOIN TB_CILHAS_UPLOAD_PLAYLIST A ON A.CD_PLAYLIST = C.ID_PLAYLIST ";
+
+                return conexao.Query<PlayListDTO, UploadPlayListRelDTO, PlayListDTO>(sql, (PlayList, UploadPlayListRel) =>
+                {
+                    PlayList.UploadPlayListRelDTO = UploadPlayListRel;
+                    return PlayList;
+                }, splitOn: "ID_UPLOAD_PLAYLIST").ToList();
+            }
+        }
+
+        public IEnumerable<PlayListDTO> ObterPlayEdit(ObterPlayListParaEditRequest pObterPlayListParaEditRequest)
+        {
+            //Int64 a = 1;
+            using (OracleConnection conexao = new OracleConnection(_configuration.GetConnectionString("DESENV")))
+            {
+                return conexao.Query<PlayListDTO>(
+                    "SELECT  CP.ID_PLAYLIST, CP.NM_PLAYLIST, CP.FL_PLAYLIST_ATIVO, " +
+                        "CUP.ID_UPLOAD_PLAYLIST, CUP.CD_ARQUIVO_UPLOAD, CUP.NU_ORDEM_EXIBICAO, "+
+                        "CAU.ID_ARQUIVO_UPLOAD, CAU.NM_ARQUIVO_UPLOAD "+
+                        "FROM TB_CILHAS_PLAYLIST CP "+
+                        "JOIN TB_CILHAS_UPLOAD_PLAYLIST CUP ON CP.ID_PLAYLIST = CUP.CD_PLAYLIST "+
+                        "JOIN TB_CILHAS_ARQUIVO_UPLOAD CAU ON CAU.ID_ARQUIVO_UPLOAD = CUP.CD_ARQUIVO_UPLOAD "+
+                        "WHERE ID_PLAYLIST = :ID_PLAYLIST ",
+                   new { ID_PLAYLIST = pObterPlayListParaEditRequest.IdPlayList });
             }
         }
 
@@ -157,7 +211,6 @@ namespace waCanalIlhas.DAL
             //    return conexao.Execute(sSql, null, commandType: CommandType.Text);
             //}
         }
-
 
         //public Int64 InserirPlayList(InserirPlayListRequest pInserirPlayListRequest)
         //{
