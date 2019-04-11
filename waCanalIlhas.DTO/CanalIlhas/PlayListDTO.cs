@@ -48,6 +48,7 @@ namespace waCanalIlhas.DTO.CanalIlhas
         [DataMember]
         public int? NU_MATR_EXCLUSAO { get; set; }
 
+
         public UploadPlayListRelDTO UploadPlayListRelDTO { get; set; }
     }
 }
